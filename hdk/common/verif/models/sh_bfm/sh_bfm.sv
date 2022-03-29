@@ -58,11 +58,11 @@ module sh_bfm #(
    //cl_ports_sh_bfm.vh is generated from cl_ports.vh in $(HDK_SHELL_DESIGN_DIR)/interfaces.
    //This is to ensure that there is no integration issues.
    //---------------------------------------------------------------------------------------
-    `include "cl_ports_sh_bfm.vh"
+    `include "/home/muheet/stableEnv/aws-fpga/hdk/common/shell_v04261818/hlx/verif/cl_ports_sh_bfm.vh"
 
    );
 
-`include "axi_bfm_defines.svh"
+`include "/home/muheet/stableEnv/aws-fpga/hdk/common/shell_v04261818/design/sh_ddr/sim/axi_bfm_defines.svh"
    
    import tb_type_defines_pkg::*;
 
