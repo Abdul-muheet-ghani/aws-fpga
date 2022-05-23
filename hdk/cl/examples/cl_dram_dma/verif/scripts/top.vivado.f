@@ -14,6 +14,9 @@
 # limitations under the License.
 
 --define VIVADO_SIM
+--define WT_DCACHE
+--define VERILATOR
+--define XILINX_SIMULATOR
 
 --sourcelibext .v
 --sourcelibext .sv
@@ -41,6 +44,48 @@
 
 -f ${HDK_COMMON_DIR}/verif/tb/filelists/tb.${SIMULATOR}.f
 ${TEST_NAME}
+
+-f /home/muheet/stableEnv/scalar-unit/build/flist
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/276e/simulation/fifo_generator_vlog_beh.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/276e/hdl/fifo_generator_v13_2_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/94ec/hdl/axi_data_fifo_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/8f68/hdl/axi_register_slice_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/6e0d/hdl/axi_protocol_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/7ee4/hdl/axi_clock_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/2985/simulation/blk_mem_gen_v8_4.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/3d13/hdl/axi_dwidth_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_axi_dwidth_converter_0_0/sim/xlx_design_subsystem_axi_dwidth_converter_0_0.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_axi_protocol_convert_0_0/sim/xlx_design_subsystem_axi_protocol_convert_0_0.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ipshared/3917/hdl/axi_crossbar_v2_1_vl_rfs.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_axi_crossbar_0_0/sim/xlx_design_subsystem_axi_crossbar_0_0.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_blk_mem_gen_0_0/sim/xlx_design_subsystem_blk_mem_gen_0_0.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_axi_crossbar_1_0/sim/xlx_design_subsystem_axi_crossbar_1_0.v
+/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/sim/xlx_design_subsystem.v
+/home/muheet/stableEnv/nova_project/nova_project.srcs/sources_1/new/xlx_subsystem.sv
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/8f68/hdl/axi_register_slice_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/276e/simulation/fifo_generator_vlog_beh.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/276e/hdl/fifo_generator_v13_2_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/94ec/hdl/axi_data_fifo_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/3917/hdl/axi_crossbar_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ip/AXIcrossbar1_axi_crossbar_0_0/sim/AXIcrossbar1_axi_crossbar_0_0.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ip/AXIcrossbar1_axi_crossbar_1_0/sim/AXIcrossbar1_axi_crossbar_1_0.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/6e0d/hdl/axi_protocol_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/7ee4/hdl/axi_clock_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/2985/simulation/blk_mem_gen_v8_4.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/3d13/hdl/axi_dwidth_converter_v2_1_vl_rfs.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ip/AXIcrossbar1_axi_dwidth_converter_0_0/sim/AXIcrossbar1_axi_dwidth_converter_0_0.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ip/AXIcrossbar1_axi_dwidth_converter_1_0/sim/AXIcrossbar1_axi_dwidth_converter_1_0.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ip/AXIcrossbar1_axi_protocol_convert_0_0/sim/AXIcrossbar1_axi_protocol_convert_0_0.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/sim/AXIcrossbar1.v
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.srcs/sources_1/imports/new/test.sv
+/home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/hdl/AXIcrossbar1_wrapper.v
+/home/muheet/stableEnv/aws-fpga/hdk/cl/examples/cl_dram_dma/design/nova_subsystem.v
+/home/muheet/stableEnv/aws-fpga/hdk/cl/examples/cl_dram_dma/design/cl_nova.v
+/home/muheet/stableEnv/aws-fpga/hdk/cl/examples/cl_dram_dma/design/cl_test.v
 
 ${CL_ROOT}/design/cl_dram_dma_defines.vh
 ${HDK_SHELL_DESIGN_DIR}/ip/axi_clock_converter_0/sim/axi_clock_converter_0.v

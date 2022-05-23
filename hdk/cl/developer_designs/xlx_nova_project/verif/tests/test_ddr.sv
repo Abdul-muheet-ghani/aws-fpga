@@ -25,10 +25,10 @@ import tb_type_defines_pkg::*;
 // AXI ID
 parameter [15:0] AXI_ID = 16'h0;
 
-logic [511:0] rdata;
+logic [31:0] rdata;
 logic [63:0] r_addr;
 logic [31:0] w_data;
-logic [63:0] w_addr = 64'h0000000081000000;
+logic [63:0] w_addr = 64'h0000000000000000;
 logic [63:0] inc_data = 0;
 int file_handler;
 int  i;
@@ -38,13 +38,14 @@ int A;
 
 
    initial begin
-    //   file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/text.txt","r");
-      tb.power_up();
+     tb.power_up();
 
-    forever begin
-      if(!$feof(file_handler))begin
+     $display("\n---------------------Writing Instruction In DDR-C!!!---------------------\n");
+
+    forever begin 
+      if(!$feof(file_handler))begin 
         tb.set_virtual_dip_switch(.dip(0));
-             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/int_bringup_test.txt","r");
+             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/common_test.txt","r");
                   for(i = 0; i <= inc_data; i=i+1)begin
                             $fscanf(file_handler,"%h\n",A);
                             w_data = A;
@@ -53,33 +54,44 @@ int A;
         tb.poke(.addr(w_addr), .data(w_data), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_DMA_PCIS)); // write register
         
         r_addr = w_addr;
-        //tb.peek(.addr(r_addr), .data(rdata), .size(DataSize::UINT512), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
-        //$display ("Reading 0x%x from address 0x%x", rdata[63:0], r_addr);
-
         inc_data = inc_data + 1;
-        w_addr = w_addr + 4;
+        w_addr = w_addr + 4;        
         
          end
-         if ($feof(file_handler)) begin
-        
-           tb.peek(.addr(64'h0000000081000000), .data(rdata), .size(DataSize::UINT512), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
-           $display ("Reading 0x%x from address 0x%x", rdata[127:0], r_addr);
-           tb.peek(.addr(64'h0000000081000010), .data(rdata), .size(DataSize::UINT512), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
-           $display ("Reading 0x%x from address 0x%x", rdata[127:0], r_addr);
-           tb.peek(.addr(64'h0000000081000020), .data(rdata), .size(DataSize::UINT512), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
-           $display ("Reading 0x%x from address 0x%x", rdata[127:0], r_addr);
+     if ($feof(file_handler)) begin
+           $display("\n---------------------END OF HEX FILE---------------------\n");
+
+           tb.poke(.addr(32'h00000120), .data(32'hdeadbeef), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_DMA_PCIS));
+           $display ("Writing feadbeef to address 00000120");
+
            tb.set_virtual_dip_switch(.dip(1));
-           $display("REST DISABLE!!!");
-           #14000ns;
+
+           $display("\n---------------------RESET DISABLE!!!---------------------\n");
+           $display("\n---------------------Reading From Bram Addresses!!!---------------------\n");
+           #9364ns;
+           tb.peek(.addr(32'h00000000), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
+           $display ("Reading 0x%x from address 00000000", rdata);
+           tb.peek(.addr(32'h00000008), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
+           $display ("Reading 0x%x from address 00000008", rdata);
+           tb.peek(.addr(32'h00000010), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
+           $display ("Reading 0x%x from address 00000010", rdata);
+           tb.peek(.addr(32'h00000018), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
+           $display ("Reading 0x%x from address 00000018", rdata);
+           
+           if (rdata == 00000013) begin
+             $display("\n---------------------TEST PASS---------------------\n");
+           end
+           else $display("\n---------------------TEST FAIL---------------------\n");
+           #5000ns;
            $display("end of file");
            tb.kernel_reset();
            tb.power_down();
-                   $finish();
+           $finish();   
          end
         
     end
       
-      $finish;
+      $finish; 
    end
 
 endmodule // test_ddr

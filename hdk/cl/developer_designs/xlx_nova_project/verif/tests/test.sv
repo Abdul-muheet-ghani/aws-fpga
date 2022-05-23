@@ -10,7 +10,7 @@ logic [31:0] rdata;
 logic [511:0] rdata_DMA;
 logic [31:0] r_addr;
 logic [31:0] w_data;
-logic [31:0] w_addr = 0;
+logic [31:0] w_addr = 0000000081000000;
 logic [31:0] inc_data = 0;
 int file_handler;
 int  i;
@@ -20,13 +20,13 @@ int A;
 
 
    initial begin
-      file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/text.txt","r");
+      file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/int_bringup_test.txt","r");
       tb.power_up();
 
     forever begin
       if(!$feof(file_handler))begin
         tb.set_virtual_dip_switch(.dip(0));
-             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/text.txt","r");
+             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/int_bringup_test.txt","r");
                   for(i = 0; i <= inc_data; i=i+1)begin
                             $fscanf(file_handler,"%h\n",A);
                             w_data = A;

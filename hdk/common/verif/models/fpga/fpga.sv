@@ -137,6 +137,7 @@ module fpga(
    logic [15:0]  cl_sh_ddr_arid;
    logic [63:0]  cl_sh_ddr_araddr;
    logic [7:0]   cl_sh_ddr_arlen;
+   logic [2:0]   cl_sh_ddr_arsize;
    
    logic         cl_sh_ddr_arvalid;
    logic         sh_cl_ddr_arready;
@@ -566,6 +567,7 @@ module fpga(
              
              .cl_sh_ddr_arid(cl_sh_ddr_arid),
              .cl_sh_ddr_araddr(cl_sh_ddr_araddr),
+             .cl_sh_ddr_arsize(cl_sh_ddr_arsize),
              .cl_sh_ddr_arlen(cl_sh_ddr_arlen),
              .cl_sh_ddr_arvalid(cl_sh_ddr_arvalid),
              .sh_cl_ddr_arready(sh_cl_ddr_arready),
@@ -949,6 +951,7 @@ module fpga(
               
               .cl_sh_ddr_arid(cl_sh_ddr_arid),
               .cl_sh_ddr_araddr(cl_sh_ddr_araddr),
+              .cl_sh_ddr_arsize(cl_sh_ddr_arsize),
               .cl_sh_ddr_arlen(cl_sh_ddr_arlen),
               .cl_sh_ddr_arvalid(cl_sh_ddr_arvalid),
               .sh_cl_ddr_arready(sh_cl_ddr_arready),

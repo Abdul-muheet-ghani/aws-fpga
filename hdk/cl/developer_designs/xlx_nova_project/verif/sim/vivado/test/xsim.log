@@ -2,8 +2,8 @@
 # xsim v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Fri Mar 25 18:28:22 2022
-# Process ID: 23955
+# Start of session at: Fri May 13 14:20:26 2022
+# Process ID: 4595
 # Current directory: /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test
 # Command line: xsim -source {xsim.dir/tb/xsim_script.tcl}
 # Log file: /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test/xsim.log
@@ -17,12 +17,18 @@ source xsim.dir/tb/xsim_script.tcl
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2021.1/data/ip'.
+current_fileset: Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 9878.758 ; gain = 105.348 ; free physical = 724 ; free virtual = 20715
 # xsim {tb} -autoloadwcfg
 Time resolution is 1 ps
+add_wave {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_araddr}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arburst}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arcache}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arlen}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arlock}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arprot}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arqos}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arready}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arregion}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arsize}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_arvalid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awaddr}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awburst}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awcache}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awlen}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awlock}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awprot}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awqos}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awready}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awregion}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awsize}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_awvalid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_bid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_bready}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_bresp}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_bvalid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rdata}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rlast}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rready}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rresp}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_rvalid}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_wdata}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_wlast}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_wready}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_wstrb}} {{/tb/card/fpga/CL/cl_nova_project/DDR_AXI4_wvalid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_araddr}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arburst}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arcache}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arlen}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arlock}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arprot}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arqos}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arready}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arsize}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_arvalid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awaddr}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awburst}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awcache}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awlen}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awlock}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awprot}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awqos}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awready}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awsize}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_awvalid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_bid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_bready}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_bresp}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_bvalid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rdata}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rlast}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rready}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rresp}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_rvalid}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_wdata}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_wlast}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_wready}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_wstrb}} {{/tb/card/fpga/CL/cl_nova_project/DMA_PCIS_AXI4_wvalid}} 
+current_wave_config {Untitled 1}
+Untitled 1
 add_wave {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/clk}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/arst_n}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/arst_ndm_n}} 
 current_wave_config {Untitled 1}
 Untitled 1
 add_wave {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arvalid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arready}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_araddr}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arlen}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arsize}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arburst}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arlock}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arcache}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_arprot}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awvalid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awready}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awaddr}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awlen}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awsize}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awburst}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awlock}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awcache}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_awprot}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_wvalid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_wready}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_wdata}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_wstrb}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_wlast}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rvalid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rready}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rdata}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rresp}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_rlast}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_bvalid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_bready}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_bid}} {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/u_hydra_su/maxi_bresp}} 
+restart
+INFO: [Simtcl 6-17] Simulation restarted
 run all
 Loading timesets for 'tb.card.u_ddr4_rdimm_A.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[0].micron_mem_model.u_ddr4_model .LoadTiming' @0
 	Loaded timeset:TS_1875
@@ -893,7 +899,7 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-Block Memory Generator module tb.card.fpga.CL.cl_nova_project.nova_subsystem_1.xlx_subsys.design_ss.xlx_design_subsystem_i.blk_mem_gen_0.inst.\native_mem_mapped_module.blk_mem_gen_v8_4_4_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb.card.fpga.CL.cl_nova_project.nova_subsystem_1.xlx_subsys.design_ss.blk_mem_gen_0.inst.\native_mem_mapped_module.blk_mem_gen_v8_4_4_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
 Value is 
 Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.card.fpga.sh.DDR4_3.inst.u_ddr4_mem_intfc.u_mig_ddr4_phy.inst.u_ddr_iob.\genByte[3].u_ddr_iob_byte .\genblk1.genVref.u_hpio_vref 
 Info: [Unisim HPIO_VREF-1] Fabric Tune Value changed to 0011101. Instance: tb.card.fpga.sh.DDR4_3.inst.u_ddr4_mem_intfc.u_mig_ddr4_phy.inst.u_ddr_iob.\genByte[4].u_ddr_iob_byte .\genblk1.genVref.u_hpio_vref 
@@ -946,6 +952,7 @@ Writing 0x0005a783 to address 0x0000004c
 Reading 0x0005a783 from address 0x0000004c
 end of file
              8650000
+REST DISABLE!!!
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[0].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @25959376
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[1].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @25959376
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[2].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @25959376
@@ -964,13 +971,18 @@ tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].e
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[15].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @26079328
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[16].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @26079328
 tb.card.u_ddr4_rdimm_C.\rcd_enabled.NOT_LRDIMM.u_ddr4_dimm .\rank_instances[0].even_ranks.u_ddr4_rank .\Micron_model.instance_of_sdram_devices[17].micron_mem_model.u_ddr4_model .always_diff_ck.if_diff_ck:Initialization complete @26079328
-Reading 0x0000000000000000 from address 0x81100000
-Reading 0x0000000000000000 from address 0x81000000
-Reading 0x0000000000000000 from address 0x81000004
-REST DISABLE!!!
-$finish called at time : 34910 ns : File "/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/test.sv" Line 59
-run: Time (s): cpu = 00:00:11 ; elapsed = 00:01:12 . Memory (MB): peak = 10197.543 ; gain = 0.000 ; free physical = 6433 ; free virtual = 29476
+Reading 0x00000000 from address 0x81100000
+Reading 0x00000000 from address 0x81000000
+Reading 0x0000000a from address 0x81000000
+Reading 0x0000000b from address 0x81000004
+Reading 0x0000000c from address 0x81000008
+Reading 0x0000000d from address 0x8100000c
+$finish called at time : 28670 ns : File "/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/test.sv" Line 65
+run: Time (s): cpu = 00:00:26 ; elapsed = 00:01:11 . Memory (MB): peak = 10215.746 ; gain = 0.113 ; free physical = 228 ; free virtual = 16758
+save_wave_config {/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test/tb.wcfg}
+add_files -fileset sim_1 -norecurse /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test/tb.wcfg
+set_property xsim.view /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test/tb.wcfg [get_filesets sim_1]
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting xsim at Fri Mar 25 19:04:43 2022...
+INFO: [Common 17-206] Exiting xsim at Fri May 13 14:28:05 2022...

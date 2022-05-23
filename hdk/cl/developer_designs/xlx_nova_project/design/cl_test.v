@@ -124,6 +124,11 @@ module cl_test(
   input        arst_ndm_n,
   output interrupt);
 
+   wire [63:0]DDR_ADDR_512_64_araddr_mask;
+   wire [63:0]DDR_ADDR_512_64_awaddr_mask;
+   assign DDR_ADDR_512_64_awaddr = DDR_ADDR_512_64_awaddr_mask & 64'h0000_0000_0fff_ffff;
+   assign DDR_ADDR_512_64_araddr = DDR_ADDR_512_64_araddr_mask & 64'h0000_0000_0fff_ffff;
+
 wire [63:0] S00_AXI_0_araddr;
 wire [1:0]  S00_AXI_0_arburst;
 wire [3:0]  S00_AXI_0_arcache;
@@ -247,7 +252,7 @@ nova_subsystem nova_subsystem_1(
   .s_axi_aresetn_0(s_axi_aresetn_0),
   .arst_n(arst_n),
   .arst_ndm_n(arst_ndm_n),
-  .DDR_s_araddr(DDR_ADDR_512_64_araddr),
+  .DDR_s_araddr(DDR_ADDR_512_64_araddr_mask),
   .DDR_s_arburst(DDR_ADDR_512_64_arburst),
   .DDR_s_arcache(DDR_ADDR_512_64_arcache),
   .DDR_s_arid(DDR_ADDR_512_64_arid),
@@ -259,7 +264,7 @@ nova_subsystem nova_subsystem_1(
   .DDR_s_arregion(DDR_ADDR_512_64_arregion),
   .DDR_s_arsize(DDR_ADDR_512_64_arsize),
   .DDR_s_arvalid(DDR_ADDR_512_64_arvalid),
-  .DDR_s_awaddr(DDR_ADDR_512_64_awaddr),
+  .DDR_s_awaddr(DDR_ADDR_512_64_awaddr_mask),
   .DDR_s_awburst(DDR_ADDR_512_64_awburst),
   .DDR_s_awcache(DDR_ADDR_512_64_awcache),
   .DDR_s_awid(DDR_ADDR_512_64_awid),
@@ -362,7 +367,7 @@ AXIcrossbar1_wrapper test_subsystem(
     .DDR_AXI4_arsize(DDR_AXI4_arsize),
     .DDR_AXI4_arvalid(DDR_AXI4_arvalid),
     .DDR_AXI4_awaddr(DDR_AXI4_awaddr),
-    .DDR_AXI4_awburst(DDR_AXI4_awburst),
+    .DDR_AXI4_awburst(DDR_AXI4_arburst),
     .DDR_AXI4_awcache(DDR_AXI4_awcache),
     .DDR_AXI4_awid(DDR_AXI4_awid),
     .DDR_AXI4_awlen(DDR_AXI4_awlen),

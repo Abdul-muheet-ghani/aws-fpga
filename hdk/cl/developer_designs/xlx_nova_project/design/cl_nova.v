@@ -52,6 +52,8 @@ logic rst_main_n_sync;
 //-------------------------------------------------
   assign cl_sh_id0[31:0] = `CL_SH_ID0;
   assign cl_sh_id1[31:0] = `CL_SH_ID1;
+  assign cl_sh_ddr_awburst = 2'b01;
+  assign cl_sh_ddr_arburst = 2'b01;
 
 //-------------------------------------------------
 // Reset Synchronization
@@ -98,28 +100,28 @@ cl_test cl_nova_project(
    .BAR1_AXIL_32_wstrb   (sh_bar1_wstrb),
    .BAR1_AXIL_32_wvalid  (sh_bar1_wvalid),
 
-   .DDR_AXI4_araddr(cl_sh_ddr_araddr),
-    .DDR_AXI4_arburst(cl_sh_ddr_arburst),
-    .DDR_AXI4_arcache(),
+    .DDR_AXI4_araddr(cl_sh_ddr_araddr),
+    .DDR_AXI4_arburst(),
+    //.DDR_AXI4_arcache(),
     .DDR_AXI4_arid(cl_sh_ddr_arid),
     .DDR_AXI4_arlen(cl_sh_ddr_arlen),
-    .DDR_AXI4_arlock(),
-    .DDR_AXI4_arprot(),
-    .DDR_AXI4_arqos(),
+    //.DDR_AXI4_arlock(),
+    //.DDR_AXI4_arprot(),
+    //.DDR_AXI4_arqos(),
     .DDR_AXI4_arready(sh_cl_ddr_arready),
-    .DDR_AXI4_arregion(),
+    //.DDR_AXI4_arregion(),
     .DDR_AXI4_arsize(cl_sh_ddr_arsize),
     .DDR_AXI4_arvalid(cl_sh_ddr_arvalid),
     .DDR_AXI4_awaddr(cl_sh_ddr_awaddr),
-    .DDR_AXI4_awburst(cl_sh_ddr_awburst),
-    .DDR_AXI4_awcache(),
+    .DDR_AXI4_awburst(),
+    //.DDR_AXI4_awcache(),
     .DDR_AXI4_awid(cl_sh_ddr_awid),
     .DDR_AXI4_awlen(cl_sh_ddr_awlen),
-    .DDR_AXI4_awlock(),
-    .DDR_AXI4_awprot(),
-    .DDR_AXI4_awqos(),
+    //.DDR_AXI4_awlock(),
+    //.DDR_AXI4_awprot(),
+    //.DDR_AXI4_awqos(),
     .DDR_AXI4_awready(sh_cl_ddr_awready),
-    .DDR_AXI4_awregion(),
+    //.DDR_AXI4_awregion(),
     .DDR_AXI4_awsize(cl_sh_ddr_awsize),
     .DDR_AXI4_awvalid(cl_sh_ddr_awvalid),
     .DDR_AXI4_bid(sh_cl_ddr_bid),

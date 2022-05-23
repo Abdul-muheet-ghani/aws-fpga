@@ -940,7 +940,7 @@ module sh_bfm #(
          sh_cl_dma_pcis_araddr  <= sh_cl_rd_cmds[0].addr;
          sh_cl_dma_pcis_arid    <= sh_cl_rd_cmds[0].id;
          sh_cl_dma_pcis_arlen   <= sh_cl_rd_cmds[0].len;
-         sh_cl_dma_pcis_arsize  <= /*sh_cl_rd_cmds[0].size*/3'h6;
+         sh_cl_dma_pcis_arsize  <= /*sh_cl_rd_cmds[0].size*/3'h3;
          
          sh_cl_dma_pcis_arvalid <= !sh_cl_dma_pcis_arvalid ? 1'b1 :
                                !cl_sh_dma_pcis_arready ? 1'b1 : 1'b0;
@@ -1339,6 +1339,7 @@ module sh_bfm #(
      .s_axi_awlen    (cl_sh_ddr_awlen),
      .s_axi_awvalid  (cl_sh_ddr_awvalid),
      .s_axi_awready  (sh_cl_ddr_awready),
+     .s_axi_awsize   (cl_sh_ddr_awsize),
      .s_axi_wdata    (cl_sh_ddr_wdata),
      .s_axi_wstrb    (cl_sh_ddr_wstrb),
      .s_axi_wlast    (cl_sh_ddr_wlast),
@@ -1353,6 +1354,7 @@ module sh_bfm #(
      .s_axi_arlen    (cl_sh_ddr_arlen),
      .s_axi_arvalid  (cl_sh_ddr_arvalid),
      .s_axi_arready  (sh_cl_ddr_arready),
+     .s_axi_arsize   (cl_sh_ddr_arsize),
      .s_axi_rid      (sh_cl_ddr_rid),
      .s_axi_rdata    (sh_cl_ddr_rdata),
      .s_axi_rresp    (sh_cl_ddr_rresp),
@@ -1507,7 +1509,7 @@ module sh_bfm #(
      .c0_ddr4_s_axi_awid(sync_cl_sh_ddr_awid),
      .c0_ddr4_s_axi_awaddr(sync_cl_sh_ddr_awaddr[33:0]),
      .c0_ddr4_s_axi_awlen(sync_cl_sh_ddr_awlen),
-     .c0_ddr4_s_axi_awsize(3'h6),
+     .c0_ddr4_s_axi_awsize(3'h3),
      .c0_ddr4_s_axi_awburst(2'b00),
      .c0_ddr4_s_axi_awlock(1'b0),
      .c0_ddr4_s_axi_awcache(4'h0),    
@@ -1530,7 +1532,7 @@ module sh_bfm #(
      .c0_ddr4_s_axi_arid(sync_cl_sh_ddr_arid),
      .c0_ddr4_s_axi_araddr(sync_cl_sh_ddr_araddr[33:0]),
      .c0_ddr4_s_axi_arlen(sync_cl_sh_ddr_arlen),
-     .c0_ddr4_s_axi_arsize(3'h6),
+     .c0_ddr4_s_axi_arsize(3'h3),
      .c0_ddr4_s_axi_arburst(2'b0),
      .c0_ddr4_s_axi_arlock(1'b0),
      .c0_ddr4_s_axi_arcache(4'h0),

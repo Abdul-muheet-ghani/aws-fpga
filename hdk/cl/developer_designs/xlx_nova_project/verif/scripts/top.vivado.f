@@ -76,7 +76,6 @@ ${HDK_SHELL_DESIGN_DIR}/ip/axi_clock_converter_0/hdl/fifo_generator_v13_2_rfs.v
 /home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_blk_mem_gen_0_0/sim/xlx_design_subsystem_blk_mem_gen_0_0.v
 /home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/ip/xlx_design_subsystem_axi_crossbar_1_0/sim/xlx_design_subsystem_axi_crossbar_1_0.v
 /home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/sim/xlx_design_subsystem.v
-/home/muheet/stableEnv/nova_project/nova_project.gen/sources_1/bd/xlx_design_subsystem/hdl/xlx_design_subsystem_wrapper.v
 /home/muheet/stableEnv/nova_project/nova_project.srcs/sources_1/new/xlx_subsystem.sv
 /home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v
 /home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v
@@ -104,3 +103,7 @@ ${HDK_SHELL_DESIGN_DIR}/ip/axi_clock_converter_0/hdl/fifo_generator_v13_2_rfs.v
 -f ${HDK_COMMON_DIR}/verif/tb/filelists/tb.${SIMULATOR}.f
 
 ${TEST_NAME}
+
+
+
+

@@ -665,6 +665,190 @@ sh_ddr #(
    .ddr_sh_stat_int2   (ddr_sh_stat_int_q[2]    ) 
    );
 
+  logic [63:0] DDR_AXI4_araddr;
+  logic [1:0]  DDR_AXI4_arburst;
+  logic [3:0]  DDR_AXI4_arcache;
+  logic [15:0] DDR_AXI4_arid;
+  logic [7:0]  DDR_AXI4_arlen;
+  logic [0:0]  DDR_AXI4_arlock;
+  logic [2:0]  DDR_AXI4_arprot;
+  logic [3:0]  DDR_AXI4_arqos;
+  logic [2:0]  DDR_AXI4_arready;
+  logic [3:0]  DDR_AXI4_arregion;
+  logic [2:0]  DDR_AXI4_arsize;
+  logic [0:0]  DDR_AXI4_arvalid;
+  logic [63:0] DDR_AXI4_awaddr;
+  logic [1:0]  DDR_AXI4_awburst;
+  logic [3:0]  DDR_AXI4_awcache;
+  logic [15:0] DDR_AXI4_awid;
+  logic [7:0]  DDR_AXI4_awlen;
+  logic [0:0]  DDR_AXI4_awlock;
+  logic [2:0]  DDR_AXI4_awprot;
+  logic [3:0]  DDR_AXI4_awqos;
+  logic [2:0]  DDR_AXI4_awready;
+  logic [3:0]  DDR_AXI4_awregion;
+  logic [2:0]  DDR_AXI4_awsize;
+  logic [0:0]  DDR_AXI4_awvalid;
+  logic [15:0] DDR_AXI4_bid;
+  logic [0:0]  DDR_AXI4_bready;
+  logic [1:0]  DDR_AXI4_bresp;
+  logic [2:0]  DDR_AXI4_bvalid;
+  logic [511:0]DDR_AXI4_rdata;
+  logic [15:0] DDR_AXI4_rid;
+  logic [2:0]  DDR_AXI4_rlast;
+  logic [0:0]  DDR_AXI4_rready;
+  logic [1:0]  DDR_AXI4_rresp;
+  logic [2:0]  DDR_AXI4_rvalid;
+  logic [511:0]DDR_AXI4_wdata;
+  logic [0:0]  DDR_AXI4_wlast;
+  logic [2:0]  DDR_AXI4_wready;
+  logic [63:0] DDR_AXI4_wstrb;
+  logic [0:0]  DDR_AXI4_wvalid;
+
+logic pre_sync_rst_n0;
+logic rst_main_n_sync;
+
+always_ff @(negedge rst_main_n or posedge clk_main_a0)
+   if (!rst_main_n)
+   begin
+      pre_sync_rst_n0  <= 0;
+      rst_main_n_sync <= 0;
+   end
+   else
+   begin
+      pre_sync_rst_n0  <= 1;
+      rst_main_n_sync <= pre_sync_rst_n0;
+   end
+
+   cl_test cl_nova_project(
+   .s_axi_aclk_0      (clk),
+   .arst_n            (sh_cl_status_vdip[0]), // su
+   .arst_ndm_n        (sh_cl_status_vdip[0]), // su dbg
+   .s_axi_aresetn_0   (sh_ddr_sync_rst_n), // xilinx
+
+   
+    // Slave
+   .BAR1_AXIL_32_araddr  ({32'b0,sh_bar1_araddr}),
+   .BAR1_AXIL_32_arprot  ('0),
+   .BAR1_AXIL_32_arready (bar1_sh_arready),
+   .BAR1_AXIL_32_arvalid (sh_bar1_arvalid),
+   .BAR1_AXIL_32_awaddr  ({32'b0,sh_bar1_awaddr}),
+   .BAR1_AXIL_32_awprot  ('0),
+   .BAR1_AXIL_32_awready (bar1_sh_awready),
+   .BAR1_AXIL_32_awvalid (sh_bar1_awvalid),
+   .BAR1_AXIL_32_bready  (sh_bar1_bready),
+   .BAR1_AXIL_32_bresp   (bar1_sh_bresp),
+   .BAR1_AXIL_32_bvalid  (bar1_sh_bvalid),
+   .BAR1_AXIL_32_rdata   (bar1_sh_rdata),
+   .BAR1_AXIL_32_rready  (sh_bar1_rready),
+   .BAR1_AXIL_32_rresp   (bar1_sh_rresp),
+   .BAR1_AXIL_32_rvalid  (bar1_sh_rvalid),
+   .BAR1_AXIL_32_wdata   (sh_bar1_wdata),
+   .BAR1_AXIL_32_wready  (bar1_sh_wready),
+   .BAR1_AXIL_32_wstrb   (sh_bar1_wstrb),
+   .BAR1_AXIL_32_wvalid  (sh_bar1_wvalid),
+
+    .DDR_AXI4_araddr  (DDR_AXI4_araddr),
+    .DDR_AXI4_arburst (DDR_AXI4_arburst),
+    //.DDR_AXI4_arcache(),
+    .DDR_AXI4_arid    (DDR_AXI4_arid),
+    .DDR_AXI4_arlen   (DDR_AXI4_arlen),
+    //.DDR_AXI4_arlock(),
+    //.DDR_AXI4_arprot(),
+    //.DDR_AXI4_arqos(),
+    .DDR_AXI4_arready (DDR_AXI4_arready),
+    //.DDR_AXI4_arregion(),
+    .DDR_AXI4_arsize  (DDR_AXI4_arsize),     //not 
+    .DDR_AXI4_arvalid (DDR_AXI4_arvalid),
+    .DDR_AXI4_awaddr  (DDR_AXI4_awaddr),
+    .DDR_AXI4_awburst (DDR_AXI4_awburst),
+    //.DDR_AXI4_awcache(),
+    .DDR_AXI4_awid    (DDR_AXI4_awid),
+    .DDR_AXI4_awlen   (DDR_AXI4_awlen),
+    //.DDR_AXI4_awlock(),
+    //.DDR_AXI4_awprot(),
+    //.DDR_AXI4_awqos(),
+    .DDR_AXI4_awready (DDR_AXI4_awready),
+    //.DDR_AXI4_awregion(),
+    .DDR_AXI4_awsize  (DDR_AXI4_awsize),    //not
+    .DDR_AXI4_awvalid (DDR_AXI4_awvalid),
+    .DDR_AXI4_bid     (DDR_AXI4_bid),
+    .DDR_AXI4_bready  (DDR_AXI4_bready),
+    .DDR_AXI4_bresp   (DDR_AXI4_bresp),
+    .DDR_AXI4_bvalid  (DDR_AXI4_bvalid),
+    .DDR_AXI4_rdata   (DDR_AXI4_rdata),
+    .DDR_AXI4_rid     (DDR_AXI4_rid),
+    .DDR_AXI4_rlast   (DDR_AXI4_rlast),
+    .DDR_AXI4_rready  (DDR_AXI4_rready),
+    .DDR_AXI4_rresp   (DDR_AXI4_rresp),
+    .DDR_AXI4_rvalid  (DDR_AXI4_rvalid),
+    .DDR_AXI4_wdata   (DDR_AXI4_wdata),
+    .DDR_AXI4_wlast   (DDR_AXI4_wlast),
+    .DDR_AXI4_wready  (DDR_AXI4_wready),
+    .DDR_AXI4_wstrb   (DDR_AXI4_wstrb),
+    .DDR_AXI4_wvalid  (DDR_AXI4_wvalid),
+    .interrupt        (cl_sh_status_vled[0]),
+        .DMA_PCIS_AXI4_araddr   ('b0),
+        .DMA_PCIS_AXI4_arburst  ('b0),
+        .DMA_PCIS_AXI4_arcache  ('b0),
+        .DMA_PCIS_AXI4_arid     ('b0),
+        .DMA_PCIS_AXI4_arlen    ('b0),
+        .DMA_PCIS_AXI4_arlock   ('b0),
+        .DMA_PCIS_AXI4_arprot   ('b0),
+        .DMA_PCIS_AXI4_arqos    ('b0),
+        .DMA_PCIS_AXI4_arready  (),
+        .DMA_PCIS_AXI4_arsize   ('b0),
+        .DMA_PCIS_AXI4_arvalid  ('b0),
+        .DMA_PCIS_AXI4_awaddr   ('b0),
+        .DMA_PCIS_AXI4_awburst  ('b0),
+        .DMA_PCIS_AXI4_awcache  ('b0),
+        .DMA_PCIS_AXI4_awid     ('b0),
+        .DMA_PCIS_AXI4_awlen    ('b0),
+        .DMA_PCIS_AXI4_awlock   ('b0),
+        .DMA_PCIS_AXI4_awprot   ('b0),
+        .DMA_PCIS_AXI4_awqos    ('b0),
+        .DMA_PCIS_AXI4_awready  (),
+        .DMA_PCIS_AXI4_awsize   ('b0),
+        .DMA_PCIS_AXI4_awvalid  ('b0),
+        .DMA_PCIS_AXI4_bid      (),
+        .DMA_PCIS_AXI4_bready   ('b0),
+        .DMA_PCIS_AXI4_bresp    (),
+        .DMA_PCIS_AXI4_bvalid   (),
+        .DMA_PCIS_AXI4_rdata    (),
+        .DMA_PCIS_AXI4_rid      (),
+        .DMA_PCIS_AXI4_rlast    (),
+        .DMA_PCIS_AXI4_rready   ('b0),
+        .DMA_PCIS_AXI4_rresp    (),
+        .DMA_PCIS_AXI4_rvalid   (),
+        .DMA_PCIS_AXI4_wdata    ('b0),
+        .DMA_PCIS_AXI4_wlast    ('b0),
+        .DMA_PCIS_AXI4_wready   (),
+        .DMA_PCIS_AXI4_wstrb    ('b0),
+        .DMA_PCIS_AXI4_wvalid   ('b0),
+
+        .OCL_AXIL_32_araddr   ('b0),
+        .OCL_AXIL_32_arprot   ('b0),
+        .OCL_AXIL_32_arready  (),
+        .OCL_AXIL_32_arvalid  ('b0),
+        .OCL_AXIL_32_awaddr   ('b0),
+        .OCL_AXIL_32_awprot   ('b0),
+        .OCL_AXIL_32_awready  (),
+        .OCL_AXIL_32_awvalid  ('b0),
+        .OCL_AXIL_32_bready   ('b0),
+        .OCL_AXIL_32_bresp    (),
+        .OCL_AXIL_32_bvalid   (),
+        .OCL_AXIL_32_rdata    (),
+        .OCL_AXIL_32_rready   ('b0),
+        .OCL_AXIL_32_rresp    (),
+        .OCL_AXIL_32_rvalid   (),
+        .OCL_AXIL_32_wdata    ('b0),
+        .OCL_AXIL_32_wready   (),
+        .OCL_AXIL_32_wstrb    ('b0),
+        .OCL_AXIL_32_wvalid   ('b0)
+
+   
+ );
+
 //----------------------------------------- 
 // DDR controller instantiation   
 //-----------------------------------------

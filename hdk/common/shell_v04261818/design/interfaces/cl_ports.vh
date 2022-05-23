@@ -256,8 +256,7 @@
    output  cl_sh_ddr_rready,
       
    input sh_cl_ddr_is_ready
-
-                                                                                                    
+                                                                                      
    //---------------------------------------------------------------------------------------
    // The user-defined interrupts.  These map to MSI-X vectors through mapping in the SH.
    //---------------------------------------------------------------------------------------

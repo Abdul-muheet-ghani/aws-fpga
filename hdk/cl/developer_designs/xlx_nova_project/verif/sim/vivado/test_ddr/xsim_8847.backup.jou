@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# xsim v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon May 23 07:01:50 2022
+# Process ID: 8847
+# Current directory: /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test_ddr
+# Command line: xsim -source {xsim.dir/tb/xsim_script.tcl}
+# Log file: /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test_ddr/xsim.log
+# Journal file: /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test_ddr/xsim.jou
+#-----------------------------------------------------------
+start_gui
+source xsim.dir/tb/xsim_script.tcl
+open_wave_config /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/sim/vivado/test_ddr/tb.wcfg
+run all
+current_wave_config {tb.wcfg}
+add_wave {{/tb/card/fpga/sh_bar1_awvalid}} {{/tb/card/fpga/sh_bar1_awaddr}} {{/tb/card/fpga/bar1_sh_awready}} {{/tb/card/fpga/sh_bar1_wvalid}} {{/tb/card/fpga/sh_bar1_wdata}} {{/tb/card/fpga/sh_bar1_wstrb}} {{/tb/card/fpga/bar1_sh_wready}} {{/tb/card/fpga/bar1_sh_bvalid}} {{/tb/card/fpga/bar1_sh_bresp}} {{/tb/card/fpga/sh_bar1_bready}} {{/tb/card/fpga/sh_bar1_arvalid}} {{/tb/card/fpga/sh_bar1_araddr}} {{/tb/card/fpga/bar1_sh_arready}} {{/tb/card/fpga/bar1_sh_rvalid}} {{/tb/card/fpga/bar1_sh_rdata}} {{/tb/card/fpga/bar1_sh_rresp}} {{/tb/card/fpga/sh_bar1_rready}} 
+restart
+run all
+current_wave_config {tb.wcfg}
+add_wave {{/tb/card/fpga/CL/cl_nova_project/nova_subsystem_1/xlx_subsys/design_ss/axi_bram_ctrl_0}} 
+restart
+run all
+close_sim
