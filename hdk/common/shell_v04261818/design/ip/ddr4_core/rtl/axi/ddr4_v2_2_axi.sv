@@ -238,7 +238,7 @@ localparam integer P_AXSIZE = (C_MC_DATA_WIDTH == 32) ? 3'd2 :
                               (C_MC_DATA_WIDTH == 64) ? 3'd3 : 
                               (C_MC_DATA_WIDTH == 128)? 3'd4 :
                               (C_MC_DATA_WIDTH == 256)? 3'd5 :
-                              (C_MC_DATA_WIDTH == 512)? 3'd3 : 3'd7;
+                              (C_MC_DATA_WIDTH == 512)? 3'd6 : 3'd7;
    
 // C_D?_REG_CONFIG_*:
 
@@ -750,7 +750,7 @@ axi_register_slice_d3
   .S_AXI_AWID    ( awid_d2       ) ,
   .S_AXI_AWADDR  ( awaddr_d2     ) ,
   .S_AXI_AWLEN   ( awlen_d2      ) ,
-  .S_AXI_AWSIZE  ( awsize_d2 ) ,
+  .S_AXI_AWSIZE  ( P_AXSIZE[2:0] ) ,
   .S_AXI_AWBURST ( awburst_d2    ) ,
   .S_AXI_AWLOCK  ( awlock_d2     ) ,
   .S_AXI_AWCACHE ( awcache_d2    ) ,
@@ -775,7 +775,7 @@ axi_register_slice_d3
   .S_AXI_ARID    ( arid_d2       ) ,
   .S_AXI_ARADDR  ( araddr_d2     ) ,
   .S_AXI_ARLEN   ( arlen_d2      ) ,
-  .S_AXI_ARSIZE  ( arsize_d2 ) ,
+  .S_AXI_ARSIZE  ( P_AXSIZE[2:0] ) ,
   .S_AXI_ARBURST ( arburst_d2    ) ,
   .S_AXI_ARLOCK  ( arlock_d2     ) ,
   .S_AXI_ARCACHE ( arcache_d2    ) ,

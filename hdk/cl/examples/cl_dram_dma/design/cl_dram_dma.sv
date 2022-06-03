@@ -495,6 +495,68 @@ logic[2:0] sh_cl_ddr_rlast_2d;
 logic[2:0] sh_cl_ddr_rvalid_2d;
 logic[2:0] cl_sh_ddr_rready_2d;
 
+ logic         tie_zero;
+  logic [  1:0] tie_zero_burst;
+  logic [ 15:0] tie_zero_id;
+  logic [ 63:0] tie_zero_addr;
+  logic [  7:0] tie_zero_len;
+  logic [511:0] tie_zero_data;
+  logic [511:0] tie_zero_rdata;
+  logic [ 63:0] tie_zero_strb;
+  logic tie_zero_ready;
+  logic [ 15:0] tie_zero_bid;
+  logic [  1:0] tie_zero_bresp;
+  logic [  2:0] tie_zero_rlast;
+
+  logic [63:0] DDR_AXI4_araddr;
+  logic [1:0]  DDR_AXI4_arburst;
+  logic [3:0]  DDR_AXI4_arcache;
+  logic [15:0] DDR_AXI4_arid;
+  logic [7:0]  DDR_AXI4_arlen;
+  logic [0:0]  DDR_AXI4_arlock;
+  logic [2:0]  DDR_AXI4_arprot;
+  logic [3:0]  DDR_AXI4_arqos;
+  logic [2:0]  DDR_AXI4_arready;
+  logic [3:0]  DDR_AXI4_arregion;
+  logic [2:0]  DDR_AXI4_arsize;
+  logic [0:0]  DDR_AXI4_arvalid;
+  logic [63:0] DDR_AXI4_awaddr;
+  logic [1:0]  DDR_AXI4_awburst;
+  logic [3:0]  DDR_AXI4_awcache;
+  logic [15:0] DDR_AXI4_awid;
+  logic [7:0]  DDR_AXI4_awlen;
+  logic [0:0]  DDR_AXI4_awlock;
+  logic [2:0]  DDR_AXI4_awprot;
+  logic [3:0]  DDR_AXI4_awqos;
+  logic [2:0]  DDR_AXI4_awready;
+  logic [3:0]  DDR_AXI4_awregion;
+  logic [2:0]  DDR_AXI4_awsize;
+  logic [0:0]  DDR_AXI4_awvalid;
+  logic [15:0] DDR_AXI4_bid [2:0];
+  logic [0:0]  DDR_AXI4_bready;
+  logic [1:0]  DDR_AXI4_bresp[2:0];
+  logic [2:0]  DDR_AXI4_bvalid;
+  logic [511:0]DDR_AXI4_rdata [2:0];
+  logic [15:0] DDR_AXI4_rid [2:0];
+  logic [2:0]  DDR_AXI4_rlast;
+  logic [0:0]  DDR_AXI4_rready;
+  logic [1:0]  DDR_AXI4_rresp [2:0];
+  logic [2:0]  DDR_AXI4_rvalid;
+  logic [511:0]DDR_AXI4_wdata;
+  logic [0:0]  DDR_AXI4_wlast;
+  logic [2:0]  DDR_AXI4_wready;
+  logic [63:0] DDR_AXI4_wstrb;
+  logic [0:0]  DDR_AXI4_wvalid;
+
+  assign tie_zero       =   1'b0;
+  assign tie_zero_burst  =   2'b01; // Only INCR is supported, must be tied to 2'b01
+  assign tie_zero_id     =  16'b0;
+  assign tie_zero_addr  =  64'b0;
+  assign tie_zero_len    =   8'b0;
+  assign tie_zero_data  = 512'b0;
+  assign tie_zero_strb   =  64'b0;
+
+
 assign cl_sh_ddr_awid_2d = '{lcl_cl_sh_ddrd.awid, lcl_cl_sh_ddrb.awid, lcl_cl_sh_ddra.awid};
 assign cl_sh_ddr_awaddr_2d = '{lcl_cl_sh_ddrd.awaddr, lcl_cl_sh_ddrb.awaddr, lcl_cl_sh_ddra.awaddr};
 assign cl_sh_ddr_awlen_2d = '{lcl_cl_sh_ddrd.awlen, lcl_cl_sh_ddrb.awlen, lcl_cl_sh_ddra.awlen};
@@ -603,40 +665,40 @@ sh_ddr #(
    //------------------------------------------------------
    // DDR-4 Interface from CL (AXI-4)
    //------------------------------------------------------
-   .cl_sh_ddr_awid(cl_sh_ddr_awid_2d),
-   .cl_sh_ddr_awaddr(cl_sh_ddr_awaddr_2d),
-   .cl_sh_ddr_awlen(cl_sh_ddr_awlen_2d),
-   .cl_sh_ddr_awsize(cl_sh_ddr_awsize_2d),
-   .cl_sh_ddr_awvalid(cl_sh_ddr_awvalid_2d),
-   .cl_sh_ddr_awburst(cl_sh_ddr_awburst_2d),
-   .sh_cl_ddr_awready(sh_cl_ddr_awready_2d),
+   .cl_sh_ddr_awid({tie_zero_id,tie_zero_id,DDR_AXI4_awid}),
+   .cl_sh_ddr_awaddr({tie_zero_addr,tie_zero_addr,DDR_AXI4_awaddr}),
+   .cl_sh_ddr_awlen({tie_zero_len,tie_zero_len,DDR_AXI4_awlen}),
+   .cl_sh_ddr_awsize({'b0,'b0,DDR_AXI4_awsize}),
+   .cl_sh_ddr_awvalid({tie_zero,tie_zero,DDR_AXI4_awvalid}),
+   .cl_sh_ddr_awburst({tie_zero_burst,tie_zero_burst,DDR_AXI4_awburst}),
+   .sh_cl_ddr_awready({tie_zero_ready,tie_zero_ready,DDR_AXI4_awready}),
 
-   .cl_sh_ddr_wid(cl_sh_ddr_wid_2d),
-   .cl_sh_ddr_wdata(cl_sh_ddr_wdata_2d),
-   .cl_sh_ddr_wstrb(cl_sh_ddr_wstrb_2d),
-   .cl_sh_ddr_wlast(cl_sh_ddr_wlast_2d),
-   .cl_sh_ddr_wvalid(cl_sh_ddr_wvalid_2d),
-   .sh_cl_ddr_wready(sh_cl_ddr_wready_2d),
+   .cl_sh_ddr_wid({tie_zero_id,tie_zero_id,tie_zero_id}),
+   .cl_sh_ddr_wdata({tie_zero_data,tie_zero_data,DDR_AXI4_wdata}),
+   .cl_sh_ddr_wstrb({tie_zero_strb,tie_zero_strb,DDR_AXI4_wstrb}),
+   .cl_sh_ddr_wlast({'b0,'b0,DDR_AXI4_wlast}),
+   .cl_sh_ddr_wvalid({'b0,'b0,DDR_AXI4_wvalid}),
+   .sh_cl_ddr_wready({tie_zero_ready,tie_zero_ready,DDR_AXI4_wready}),
 
-   .sh_cl_ddr_bid(sh_cl_ddr_bid_2d),
-   .sh_cl_ddr_bresp(sh_cl_ddr_bresp_2d),
-   .sh_cl_ddr_bvalid(sh_cl_ddr_bvalid_2d),
-   .cl_sh_ddr_bready(cl_sh_ddr_bready_2d),
+   .sh_cl_ddr_bid(DDR_AXI4_bid),
+   .sh_cl_ddr_bresp(DDR_AXI4_bresp),
+   .sh_cl_ddr_bvalid(DDR_AXI4_bvalid),
+   .cl_sh_ddr_bready({'b0,'b0,DDR_AXI4_bready}),
 
-   .cl_sh_ddr_arid(cl_sh_ddr_arid_2d),
-   .cl_sh_ddr_araddr(cl_sh_ddr_araddr_2d),
-   .cl_sh_ddr_arlen(cl_sh_ddr_arlen_2d),
-   .cl_sh_ddr_arsize(cl_sh_ddr_arsize_2d),
-   .cl_sh_ddr_arvalid(cl_sh_ddr_arvalid_2d),
-   .cl_sh_ddr_arburst(cl_sh_ddr_arburst_2d),
-   .sh_cl_ddr_arready(sh_cl_ddr_arready_2d),
+   .cl_sh_ddr_arid({tie_zero_id,tie_zero_id,DDR_AXI4_arid}),
+   .cl_sh_ddr_araddr({tie_zero_addr,tie_zero_addr,DDR_AXI4_araddr}),
+   .cl_sh_ddr_arlen({tie_zero_len,tie_zero_len,DDR_AXI4_arlen}),
+   .cl_sh_ddr_arsize({'b0,'b0,DDR_AXI4_arsize}),
+   .cl_sh_ddr_arvalid({tie_zero,tie_zero,DDR_AXI4_arvalid}),
+   .cl_sh_ddr_arburst({tie_zero_burst,tie_zero_burst,DDR_AXI4_arburst}),
+   .sh_cl_ddr_arready(DDR_AXI4_arready),
 
-   .sh_cl_ddr_rid(sh_cl_ddr_rid_2d),
-   .sh_cl_ddr_rdata(sh_cl_ddr_rdata_2d),
-   .sh_cl_ddr_rresp(sh_cl_ddr_rresp_2d),
-   .sh_cl_ddr_rlast(sh_cl_ddr_rlast_2d),
-   .sh_cl_ddr_rvalid(sh_cl_ddr_rvalid_2d),
-   .cl_sh_ddr_rready(cl_sh_ddr_rready_2d),
+   .sh_cl_ddr_rid(DDR_AXI4_rid),
+   .sh_cl_ddr_rdata(DDR_AXI4_rdata),
+   .sh_cl_ddr_rresp(DDR_AXI4_rresp),
+   .sh_cl_ddr_rlast(DDR_AXI4_rlast),
+   .sh_cl_ddr_rvalid(DDR_AXI4_rvalid),
+   .cl_sh_ddr_rready({'b0,'b0,DDR_AXI4_rready}),
 
    .sh_cl_ddr_is_ready(lcl_sh_cl_ddr_is_ready),
 
@@ -665,45 +727,7 @@ sh_ddr #(
    .ddr_sh_stat_int2   (ddr_sh_stat_int_q[2]    ) 
    );
 
-  logic [63:0] DDR_AXI4_araddr;
-  logic [1:0]  DDR_AXI4_arburst;
-  logic [3:0]  DDR_AXI4_arcache;
-  logic [15:0] DDR_AXI4_arid;
-  logic [7:0]  DDR_AXI4_arlen;
-  logic [0:0]  DDR_AXI4_arlock;
-  logic [2:0]  DDR_AXI4_arprot;
-  logic [3:0]  DDR_AXI4_arqos;
-  logic [2:0]  DDR_AXI4_arready;
-  logic [3:0]  DDR_AXI4_arregion;
-  logic [2:0]  DDR_AXI4_arsize;
-  logic [0:0]  DDR_AXI4_arvalid;
-  logic [63:0] DDR_AXI4_awaddr;
-  logic [1:0]  DDR_AXI4_awburst;
-  logic [3:0]  DDR_AXI4_awcache;
-  logic [15:0] DDR_AXI4_awid;
-  logic [7:0]  DDR_AXI4_awlen;
-  logic [0:0]  DDR_AXI4_awlock;
-  logic [2:0]  DDR_AXI4_awprot;
-  logic [3:0]  DDR_AXI4_awqos;
-  logic [2:0]  DDR_AXI4_awready;
-  logic [3:0]  DDR_AXI4_awregion;
-  logic [2:0]  DDR_AXI4_awsize;
-  logic [0:0]  DDR_AXI4_awvalid;
-  logic [15:0] DDR_AXI4_bid;
-  logic [0:0]  DDR_AXI4_bready;
-  logic [1:0]  DDR_AXI4_bresp;
-  logic [2:0]  DDR_AXI4_bvalid;
-  logic [511:0]DDR_AXI4_rdata;
-  logic [15:0] DDR_AXI4_rid;
-  logic [2:0]  DDR_AXI4_rlast;
-  logic [0:0]  DDR_AXI4_rready;
-  logic [1:0]  DDR_AXI4_rresp;
-  logic [2:0]  DDR_AXI4_rvalid;
-  logic [511:0]DDR_AXI4_wdata;
-  logic [0:0]  DDR_AXI4_wlast;
-  logic [2:0]  DDR_AXI4_wready;
-  logic [63:0] DDR_AXI4_wstrb;
-  logic [0:0]  DDR_AXI4_wvalid;
+  
 
 logic pre_sync_rst_n0;
 logic rst_main_n_sync;
@@ -756,7 +780,7 @@ always_ff @(negedge rst_main_n or posedge clk_main_a0)
     //.DDR_AXI4_arlock(),
     //.DDR_AXI4_arprot(),
     //.DDR_AXI4_arqos(),
-    .DDR_AXI4_arready (DDR_AXI4_arready),
+    .DDR_AXI4_arready (DDR_AXI4_arready[0]),
     //.DDR_AXI4_arregion(),
     .DDR_AXI4_arsize  (DDR_AXI4_arsize),     //not 
     .DDR_AXI4_arvalid (DDR_AXI4_arvalid),
@@ -772,59 +796,59 @@ always_ff @(negedge rst_main_n or posedge clk_main_a0)
     //.DDR_AXI4_awregion(),
     .DDR_AXI4_awsize  (DDR_AXI4_awsize),    //not
     .DDR_AXI4_awvalid (DDR_AXI4_awvalid),
-    .DDR_AXI4_bid     (DDR_AXI4_bid),
+    .DDR_AXI4_bid     (DDR_AXI4_bid[0]),
     .DDR_AXI4_bready  (DDR_AXI4_bready),
-    .DDR_AXI4_bresp   (DDR_AXI4_bresp),
-    .DDR_AXI4_bvalid  (DDR_AXI4_bvalid),
-    .DDR_AXI4_rdata   (DDR_AXI4_rdata),
-    .DDR_AXI4_rid     (DDR_AXI4_rid),
-    .DDR_AXI4_rlast   (DDR_AXI4_rlast),
+    .DDR_AXI4_bresp   (DDR_AXI4_bresp[0]),
+    .DDR_AXI4_bvalid  (DDR_AXI4_bvalid[0]),
+    .DDR_AXI4_rdata   (DDR_AXI4_rdata[0]),
+    .DDR_AXI4_rid     (DDR_AXI4_rid[0]),
+    .DDR_AXI4_rlast   (DDR_AXI4_rlast[0]),
     .DDR_AXI4_rready  (DDR_AXI4_rready),
-    .DDR_AXI4_rresp   (DDR_AXI4_rresp),
-    .DDR_AXI4_rvalid  (DDR_AXI4_rvalid),
+    .DDR_AXI4_rresp   (DDR_AXI4_rresp[0]),
+    .DDR_AXI4_rvalid  (DDR_AXI4_rvalid[0]),
     .DDR_AXI4_wdata   (DDR_AXI4_wdata),
     .DDR_AXI4_wlast   (DDR_AXI4_wlast),
     .DDR_AXI4_wready  (DDR_AXI4_wready),
     .DDR_AXI4_wstrb   (DDR_AXI4_wstrb),
     .DDR_AXI4_wvalid  (DDR_AXI4_wvalid),
     .interrupt        (cl_sh_status_vled[0]),
-        .DMA_PCIS_AXI4_araddr   ('b0),
-        .DMA_PCIS_AXI4_arburst  ('b0),
+        .DMA_PCIS_AXI4_araddr   (cl_sh_ddr_araddr_2d[0]),
+        .DMA_PCIS_AXI4_arburst  (cl_sh_ddr_arburst_2d[0]),
         .DMA_PCIS_AXI4_arcache  ('b0),
-        .DMA_PCIS_AXI4_arid     ('b0),
-        .DMA_PCIS_AXI4_arlen    ('b0),
+        .DMA_PCIS_AXI4_arid     (cl_sh_ddr_arid_2d[0]),
+        .DMA_PCIS_AXI4_arlen    (cl_sh_ddr_arlen_2d[0]),
         .DMA_PCIS_AXI4_arlock   ('b0),
         .DMA_PCIS_AXI4_arprot   ('b0),
         .DMA_PCIS_AXI4_arqos    ('b0),
-        .DMA_PCIS_AXI4_arready  (),
-        .DMA_PCIS_AXI4_arsize   ('b0),
-        .DMA_PCIS_AXI4_arvalid  ('b0),
-        .DMA_PCIS_AXI4_awaddr   ('b0),
-        .DMA_PCIS_AXI4_awburst  ('b0),
+        .DMA_PCIS_AXI4_arready  (sh_cl_ddr_arready_2d[0]),
+        .DMA_PCIS_AXI4_arsize   (cl_sh_ddr_arsize_2d[0]),
+        .DMA_PCIS_AXI4_arvalid  (cl_sh_ddr_arvalid_2d[0]),
+        .DMA_PCIS_AXI4_awaddr   (cl_sh_ddr_awaddr_2d[0]),
+        .DMA_PCIS_AXI4_awburst  (cl_sh_ddr_awburst_2d[0]),
         .DMA_PCIS_AXI4_awcache  ('b0),
-        .DMA_PCIS_AXI4_awid     ('b0),
-        .DMA_PCIS_AXI4_awlen    ('b0),
+        .DMA_PCIS_AXI4_awid     (cl_sh_ddr_awid_2d[0]),
+        .DMA_PCIS_AXI4_awlen    (cl_sh_ddr_awlen_2d[0]),
         .DMA_PCIS_AXI4_awlock   ('b0),
         .DMA_PCIS_AXI4_awprot   ('b0),
         .DMA_PCIS_AXI4_awqos    ('b0),
-        .DMA_PCIS_AXI4_awready  (),
-        .DMA_PCIS_AXI4_awsize   ('b0),
-        .DMA_PCIS_AXI4_awvalid  ('b0),
-        .DMA_PCIS_AXI4_bid      (),
-        .DMA_PCIS_AXI4_bready   ('b0),
-        .DMA_PCIS_AXI4_bresp    (),
-        .DMA_PCIS_AXI4_bvalid   (),
-        .DMA_PCIS_AXI4_rdata    (),
-        .DMA_PCIS_AXI4_rid      (),
-        .DMA_PCIS_AXI4_rlast    (),
-        .DMA_PCIS_AXI4_rready   ('b0),
-        .DMA_PCIS_AXI4_rresp    (),
-        .DMA_PCIS_AXI4_rvalid   (),
-        .DMA_PCIS_AXI4_wdata    ('b0),
-        .DMA_PCIS_AXI4_wlast    ('b0),
-        .DMA_PCIS_AXI4_wready   (),
-        .DMA_PCIS_AXI4_wstrb    ('b0),
-        .DMA_PCIS_AXI4_wvalid   ('b0),
+        .DMA_PCIS_AXI4_awready  (sh_cl_ddr_awready_2d[0]),
+        .DMA_PCIS_AXI4_awsize   (cl_sh_ddr_awsize_2d[0]),
+        .DMA_PCIS_AXI4_awvalid  (cl_sh_ddr_awvalid_2d[0]),
+        .DMA_PCIS_AXI4_bid      (sh_cl_ddr_bid_2d[0]),
+        .DMA_PCIS_AXI4_bready   (cl_sh_ddr_bready_2d[0]),
+        .DMA_PCIS_AXI4_bresp    (sh_cl_ddr_bresp_2d[0]),
+        .DMA_PCIS_AXI4_bvalid   (sh_cl_ddr_bvalid_2d[0]),
+        .DMA_PCIS_AXI4_rdata    (sh_cl_ddr_rdata_2d[0]),
+        .DMA_PCIS_AXI4_rid      (sh_cl_ddr_rid_2d[0]),
+        .DMA_PCIS_AXI4_rlast    (sh_cl_ddr_rlast_2d[0]),
+        .DMA_PCIS_AXI4_rready   (cl_sh_ddr_rready_2d[0]),
+        .DMA_PCIS_AXI4_rresp    (sh_cl_ddr_rresp_2d[0]),
+        .DMA_PCIS_AXI4_rvalid   (sh_cl_ddr_rvalid_2d[0]),
+        .DMA_PCIS_AXI4_wdata    (cl_sh_ddr_wdata_2d[0]),
+        .DMA_PCIS_AXI4_wlast    (cl_sh_ddr_wlast_2d[0]),
+        .DMA_PCIS_AXI4_wready   (sh_cl_ddr_wready_2d[0]),
+        .DMA_PCIS_AXI4_wstrb    (cl_sh_ddr_wstrb_2d[0]),
+        .DMA_PCIS_AXI4_wvalid   (cl_sh_ddr_wvalid_2d[0]),
 
         .OCL_AXIL_32_araddr   ('b0),
         .OCL_AXIL_32_arprot   ('b0),

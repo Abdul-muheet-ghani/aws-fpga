@@ -12,87 +12,87 @@
 // an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or
 // implied. See the License for the specific language governing permissions and
 // limitations under the License.
+// 
+// Description: This test is to catch the memory aliasing issues in DDR memory models.
+// The test walks through the DDR address range and tests the contents.
 
-//------------------------------------------------------------------------------
-// Description: This test checks the byte swap feature of the hello_world CL. It also checks
-// if the upper word of the CL register is written to Vdip
-//-------------------------------------------------------------------------------
+module test_ddr_peek_poke();
 
-module test_ddr();
+   import tb_type_defines_pkg::*;
 
-import tb_type_defines_pkg::*;
+   logic [63:0]  addr;
 
-// AXI ID
-parameter [15:0] AXI_ID = 16'h0;
+   logic [511:0]  wide_read_data;
 
-logic [31:0] rdata;
+   int           error_count;
+   int           fail;
+   parameter [15:0] AXI_ID = 16'h0;
+logic [511:0] rdata;
 logic [63:0] r_addr;
 logic [31:0] w_data;
-logic [63:0] w_addr = 64'h0000000000000000;
+logic [63:0] w_addr = 64'h00;
 logic [63:0] inc_data = 0;
 int file_handler;
 int  i;
 int A;
 // logic [15:0] vdip_value;
-// logic [15:0] vled_value;
-
+logic [15:0] vled_value;
+assign vled_value='b0;
 
    initial begin
-     tb.power_up();
 
-     $display("\n---------------------Writing Instruction In DDR-C!!!---------------------\n");
+      tb.power_up();
 
-    forever begin 
-      if(!$feof(file_handler))begin 
+      tb.nsec_delay(500);
+      
+      tb.poke_stat(.addr(8'h0c), .ddr_idx(0), .data(32'h0000_0000));
+      tb.poke_stat(.addr(8'h0c), .ddr_idx(1), .data(32'h0000_0000));
+      tb.poke_stat(.addr(8'h0c), .ddr_idx(2), .data(32'h0000_0000));
+      
+      // select the ATG hardware
+       
+      tb.poke_ocl(.addr(64'h130), .data(0));
+      tb.poke_ocl(.addr(64'h230), .data(0));
+      tb.poke_ocl(.addr(64'h330), .data(0));
+      tb.poke_ocl(.addr(64'h430), .data(0));
+
+      // allow memory to initialize
+      tb.nsec_delay(15000);
+
+      forever begin
+      if(!$feof(file_handler))begin
         tb.set_virtual_dip_switch(.dip(0));
-             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/common_test.txt","r");
+             file_handler=$fopen("/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/verif/tests/int_bringup_test.txt","r");
                   for(i = 0; i <= inc_data; i=i+1)begin
                             $fscanf(file_handler,"%h\n",A);
                             w_data = A;
                   end
         $display ("Writing 0x%x", w_data," to address 0x%x", w_addr);
         tb.poke(.addr(w_addr), .data(w_data), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_DMA_PCIS)); // write register
-        
+      
         r_addr = w_addr;
         inc_data = inc_data + 1;
-        w_addr = w_addr + 4;        
+        w_addr = w_addr + 4;
         
-         end
-     if ($feof(file_handler)) begin
-           $display("\n---------------------END OF HEX FILE---------------------\n");
-
-           tb.poke(.addr(32'h00000120), .data(32'hdeadbeef), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_DMA_PCIS));
-           $display ("Writing feadbeef to address 00000120");
+      end
+       if ($feof(file_handler)) begin
 
            tb.set_virtual_dip_switch(.dip(1));
-
-           $display("\n---------------------RESET DISABLE!!!---------------------\n");
-           $display("\n---------------------Reading From Bram Addresses!!!---------------------\n");
-           #9364ns;
-           tb.peek(.addr(32'h00000000), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
-           $display ("Reading 0x%x from address 00000000", rdata);
-           tb.peek(.addr(32'h00000008), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
-           $display ("Reading 0x%x from address 00000008", rdata);
-           tb.peek(.addr(32'h00000010), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
-           $display ("Reading 0x%x from address 00000010", rdata);
-           tb.peek(.addr(32'h00000018), .data(rdata), .id(AXI_ID), .size(DataSize::UINT32), .intf(AxiPort::PORT_BAR1));         // start read & write
-           $display ("Reading 0x%x from address 00000018", rdata);
-           
-           if (rdata == 00000013) begin
-             $display("\n---------------------TEST PASS---------------------\n");
-           end
-           else $display("\n---------------------TEST FAIL---------------------\n");
-           #5000ns;
+           tb.peek(.addr(64'h0000000000000000), .data(rdata[63:0]), .size(DataSize::UINT64), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
+           $display ("Reading 0x%x from address 0x%x", rdata, 0000000000000000);
+           tb.peek(.addr(64'h0000000000000008), .data(rdata[63:0]), .size(DataSize::UINT64), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
+           $display ("Reading 0x%x from address 0x%x", rdata, 0000000000000000);
+           tb.peek(.addr(64'h0000000000000010), .data(rdata), .size(DataSize::UINT512), .intf(AxiPort::PORT_DMA_PCIS));         // start read & write
+           $display ("Reading 0x%x from address 0x%x", rdata, 0000000000000000);
+           $display("REST DISABLE!!!");
+           #14000ns;
            $display("end of file");
            tb.kernel_reset();
            tb.power_down();
-           $finish();   
+                   $finish();
          end
-        
-    end
       
-      $finish; 
+   end 
    end
 
-endmodule // test_ddr
-
+endmodule 

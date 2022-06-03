@@ -97,7 +97,7 @@ ${HDK_SHELL_DESIGN_DIR}/ip/axi_clock_converter_0/hdl/fifo_generator_v13_2_rfs.v
 /home/muheet/stableEnv/cl_test_ss/cl_test_ss.srcs/sources_1/imports/new/test.sv
 /home/muheet/stableEnv/cl_test_ss/cl_test_ss.gen/sources_1/bd/AXIcrossbar1/hdl/AXIcrossbar1_wrapper.v
 /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/design/nova_subsystem.v
-/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/design/cl_nova.v
+/home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/design/cl_nova.sv
 /home/muheet/stableEnv/aws-fpga/hdk/cl/developer_designs/xlx_nova_project/design/cl_test.v
 
 -f ${HDK_COMMON_DIR}/verif/tb/filelists/tb.${SIMULATOR}.f

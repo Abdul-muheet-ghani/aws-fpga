@@ -143,7 +143,19 @@ input [0:0]  S00_AXI_0_wvalid,
   wire arst_ndm_n;
   wire [63:0]hydra_m_awaddr_mask;
   wire [63:0]hydra_m_araddr_mask;
-  
+  /*
+  wire [63:0] mask_araddr;
+  wire [63:0] mask_awaddr;
+  wire [63:0] s_mask_araddr;
+  wire [63:0] s_mask_awadr;
+  wire [63:0] hydra_s_mask_araddr;
+  wire [63:0] hydra_s_mask_awaddr;
+
+
+   assign hydra_m_araddr = mask_araddr & 64'h0000_0000_001f_ffff;
+   assign hydra_m_awaddr = mask_awaddr & 64'h0000_0000_001f_ffff;
+   assign hydra_s_mask_araddr    = hydra_S_araddr & 64'h0000_0000_001f_ffff;
+   assign hydra_s_mask_awaddr    = hydra_S_awaddr & 64'h0000_0000_001f_ffff;*/
    assign hydra_m_awaddr_mask = hydra_m_awaddr & 64'h0000_0000_ffff_ffff;
    assign hydra_m_araddr_mask = hydra_m_araddr & 64'h0000_0000_ffff_ffff;
    
